@@ -24,20 +24,22 @@ def haversine(r,phi1,lam1,phi2,lam2):
     d=2*r*n_quero
     return d 
 
-def adiciona_em_ordem(pais,dis,lista_p):
-    esse=[pais,dis]
-    final=[]
-    if len(lista_p)==0:
-        return [esse]
-    for i in range(0,len(lista_p)):    
-        if lista_p[i][1]>dis:
-            lista_p.insert(i,esse)
-        if dis>lista_p[len(lista_p)-1][1]:
-            lista_p.append(esse) 
-    for element in lista_p:
-        if element not in final:
-            final.append(element)
-    return final
+def adiciona_em_ordem(pais, dist, lista):
+    if lista == []:
+        return [[pais, dist]]
+    
+    lista_atualizada = []
+    i = 0
+    n = len(lista)
+
+    while i < n:
+        if lista[i][1] > dist:
+            lista_atualizada.append([pais, dist])
+            dist = lista[n-1][1]
+        lista_atualizada.append(lista[i])
+        i += 1
+
+    return lista_atualizada
 
 def esta_na_lista(pais,lista):
     c=0

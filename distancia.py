@@ -14,6 +14,4 @@ def distancia_palpite_pais(palpite, pais):
     
     raio = EARTH_RADIUS
 
-    return (f'{(haversine(raio, fi1, lan1, fi2, lan2)/1000):.3f}')
-
-print(distancia_palpite_pais('italia', 'russia'))
+    return (haversine(raio, fi1, lan1, fi2, lan2))

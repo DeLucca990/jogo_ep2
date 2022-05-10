@@ -36,7 +36,7 @@ tentaviva_inicial=20
 print(f'Você tem {tentaviva_inicial} tentativa(s)')
 #Começando o jogo
 
-numero_das_dicas=['0|','1|','2|','3|','4|','5']
+numero_das_dicas=['0','|1','|2','|3','|4','|5']
 numero_das_dicas_str=''.join(numero_das_dicas)
 pais=normaliza(DADOS)
 pais_rand=sorteia_pais(pais)
@@ -55,7 +55,8 @@ while True:
             print('Tu já tentou esse, bixo... acorda, meu irmão!!!')
 
         for catalogo in lista_palpites:
-            print(f'{catalogo[0]} está a {catalogo[1]} km da resposta') 
+            if palpite != pais_rand:
+                print(f'{catalogo[0]} está a {catalogo[1]:.3f} km da resposta') 
 
         print(f'Você tem {tentaviva_inicial} tentativa(s)')
     if palpite=='dica':
@@ -81,7 +82,7 @@ while True:
                 print(f'Agora você tem {tentaviva_inicial} tentativa(s)')
                 break
             elif escolhe_dica=='3':
-                numero_das_dicas.remove('3|')
+                numero_das_dicas.remove('|3')
                 numero_das_dicas_str=''.join(numero_das_dicas)
                 if tentaviva_inicial<6:
                     print('Acabou o estoque de dicas, maluco!')
@@ -91,7 +92,7 @@ while True:
                 print(f'Agora você tem {tentaviva_inicial} tentativa(s)')
                 break
             elif escolhe_dica=='4':
-                numero_das_dicas.remove('4|')
+                numero_das_dicas.remove('|4')
                 numero_das_dicas_str=''.join(numero_das_dicas)
                 if tentaviva_inicial<5:
                     print('Acabou o estoque de dicas, maluco!')
@@ -101,7 +102,7 @@ while True:
                 print(f'Agora você tem {tentaviva_inicial} tentativa(s)')
                 break
             elif escolhe_dica=='5':
-                numero_das_dicas.remove('5')
+                numero_das_dicas.remove('|5')
                 numero_das_dicas_str=''.join(numero_das_dicas)
                 if tentaviva_inicial<7:
                     print('Acabou o estoque de dicas, maluco!')
@@ -122,9 +123,7 @@ while True:
     #Final do jogo
     if palpite == pais_rand:
         print('Acertou, danadinho!')
-        break
-    #if palpite in lista_paises and palpite != pais_rand:
-        #dis = 
+        break 
     elif palpite=='desisto':
         esc_final=str(input('Vai arregar é???[s/n]')).lower()
         if esc_final=='s':
