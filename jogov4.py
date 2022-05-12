@@ -232,7 +232,36 @@ while True:
         if tema == 'cores':
             print(f'- Cores da bandeira: {cores_ditas}')
 
-
+    if palpite=='inventario':
+        print('='*50)
+        print('Este é seu invetário... Que não serve para nada =)')
+        print('')
+        print('Distâncias:')
+        for catalogo in lista_palpites:
+            if 0<catalogo[1]<1000:
+                print(f'\033[32m{catalogo[0]} está a {catalogo[1]:.3f} km da resposta\033[m')
+            elif 1000<=catalogo[1]<2000:
+                print(f'\033[33m{catalogo[0]} está a {catalogo[1]:.3f} km da resposta\033[m')
+            elif 2000<=catalogo[1]<5000:
+                print(f'\033[34m{catalogo[0]} está a {catalogo[1]:.3f} km da resposta\033[m')
+            elif 5000<=catalogo[1]<10000:
+                print(f'\033[35m{catalogo[0]} está a {catalogo[1]:.3f} km da resposta\033[m')
+            elif catalogo[1]>=10000:
+                print(f'\033[31m{catalogo[0]} está a {catalogo[1]:.3f} km da resposta\033[m')
+        print('')
+        print('Dicas:')
+        for tema in dic_dicas_opcoes:
+            if dic_dicas_opcoes[tema] == area_final:
+                print(f'- Área: {area_final} km²')
+            if dic_dicas_opcoes[tema] == pop:
+                print(f'- População: {pop} habitantes')
+            if dic_dicas_opcoes[tema] == cont:
+                print(f'- Continente: {cont}')
+            if tema == 'letras':
+                print(f'- Letras da capital: {letras}')
+            if tema == 'cores':
+                print(f'- Cores da bandeira: {cores_ditas}')
+        print('='*50)
     #Final do jogo
     if palpite == pais_rand:
         print('Acertou, danadinho!')
@@ -241,7 +270,7 @@ while True:
     elif palpite=='desisto':
         esc_final=str(input('Vai arregar é???[s/n]')).lower()
         if esc_final=='s':
-            print(f'Você é péssimo em Geografia!!! O país era: {pais_rand}')
+            print(f'Você é péssimo em Geografia!!! O país era: \033[32m{pais_rand}\033[m')
             break
     elif tentaviva_inicial<=0:
         print(f'Meu amigo... tu só pode ter passado no conselho! \033[31mGAME OVER!!!\033[m O país era: \033[32m{pais_rand}\033[m')
