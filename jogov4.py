@@ -44,7 +44,7 @@ print('    Inventario - Exibe sua posição')
 print('')
 print('Um país foi ecolhido, tente adivinhar, e veja se você manja de geografia!!!')
 tentaviva_inicial=20
-print(f'Você tem {tentaviva_inicial} tentativa(s)')
+print(f'Você tem \033[36m{tentaviva_inicial}\033[m tentativa(s)')
 #Começando o jogo
 
 numero_das_dicas=['0','|1','|2','|3','|4','|5']
@@ -53,12 +53,12 @@ pais=normaliza(DADOS)
 pais_rand=sorteia_pais(pais)
 
 for continente in DADOS:
-        for country in DADOS[continente]:
-            if country == pais_rand:
-                for cor in DADOS[continente][country]['bandeira']:
-                    if DADOS[continente][country]['bandeira'][cor] > 0:
-                        if DADOS[continente][country]['bandeira'][cor] != 'outras':
-                            cores_bandeira.append(cor)
+    for country in DADOS[continente]:
+        if country == pais_rand:
+            for tipo,cor in DADOS[continente][country]['bandeira'].items():
+                if cor > 0:
+                    if tipo != 'outras':
+                        cores_bandeira.append(tipo)
 
 while True:
 
@@ -92,14 +92,19 @@ while True:
                     print(f'\033[35m{catalogo[0]} está a {catalogo[1]:.3f} km da resposta\033[m')
                 elif catalogo[1]>=10000:
                     print(f'\033[31m{catalogo[0]} está a {catalogo[1]:.3f} km da resposta\033[m')
-        print(f'Você tem {tentaviva_inicial} tentativa(s)')
+        if tentaviva_inicial>10:
+            print(f'Você tem \033[36m{tentaviva_inicial}\033[m tentativa(s)')
+        if 5<tentaviva_inicial<=10:
+            print(f'Você tem \033[33m{tentaviva_inicial}\033[m tentativa(s)')
+        if tentaviva_inicial<=5:
+            print(f'Você tem \033[31m{tentaviva_inicial}\033[m tentativa(s)')
         print('Dicas:')
         
     #pedindo dicas
     
     if palpite=='dica' or palpite=='dicas':
         print('')
-        print('Dicas da pulga')
+        print('Tá precisando de dicas né...')
         print('-'*40)
         for k,v in dic_dicas.items():
             print(v)
@@ -108,7 +113,7 @@ while True:
             escolhe_dica=str(input(f'Escolha sua opção [{numero_das_dicas_str}]:'))
             if escolhe_dica=='1':
                 if tentaviva_inicial<4:
-                    print('Acabou o estoque de dicas, maluco!')
+                    print(f'Tá com alzheimer?? Você só tem {tentaviva_inicial} tentativas, maluco!')
                     break
                 else:
                     cor_sorteada = random.choice(cores_bandeira)
@@ -118,9 +123,9 @@ while True:
                 tentaviva_inicial-=4
                 print(f'Agora você tem {tentaviva_inicial} tentativa(s)')
                 break
-            elif escolhe_dica=='2':
+            if escolhe_dica=='2':
                 if tentaviva_inicial<3:
-                    print('Acabou o estoque de dicas, maluco!')
+                    print(f'Tá com alzheimer?? Você só tem {tentaviva_inicial} tentativas, maluco!')
                     break
                 else:
                     for continente in DADOS:
@@ -132,11 +137,12 @@ while True:
                 tentaviva_inicial-=3
                 print(f'Agora você tem {tentaviva_inicial} tentativa(s)')
                 break
-            elif escolhe_dica=='3':
+            if escolhe_dica=='3':
                 numero_das_dicas.remove('|3')
                 numero_das_dicas_str=''.join(numero_das_dicas)
                 if tentaviva_inicial<6:
-                    print('Acabou o estoque de dicas, maluco!')
+                    del dic_dicas['dica3']
+                    print(f'Tá com alzheimer?? Você só tem {tentaviva_inicial} tentativas, maluco!')
                     break
                 else:
                     for continente in DADOS:
@@ -148,11 +154,12 @@ while True:
                 tentaviva_inicial-=6
                 print(f'Agora você tem {tentaviva_inicial} tentativa(s)')
                 break
-            elif escolhe_dica=='4':
+            if escolhe_dica=='4':
                 numero_das_dicas.remove('|4')
                 numero_das_dicas_str=''.join(numero_das_dicas)
                 if tentaviva_inicial<5:
-                    print('Acabou o estoque de dicas, maluco!')
+                    del dic_dicas['dica4']
+                    print(f'Tá com alzheimer?? Você só tem {tentaviva_inicial} tentativas, maluco!')
                     break
                 else:
                     for continente in DADOS:
@@ -164,11 +171,12 @@ while True:
                 tentaviva_inicial-=5
                 print(f'Agora você tem {tentaviva_inicial} tentativa(s)')
                 break
-            elif escolhe_dica=='5':
+            if escolhe_dica=='5':
                 numero_das_dicas.remove('|5')
                 numero_das_dicas_str=''.join(numero_das_dicas)
                 if tentaviva_inicial<7:
-                    print('Acabou o estoque de dicas, maluco!')
+                    del dic_dicas['dica5']
+                    print(f'Tá com alzheimer?? Você só tem {tentaviva_inicial} tentativas, maluco!')
                     break
                 else:
                     for continente in DADOS:
@@ -180,7 +188,7 @@ while True:
                 tentaviva_inicial-=7
                 print(f'Agora você tem {tentaviva_inicial} tentativa(s)')
                 break
-            elif escolhe_dica=='0':
+            if escolhe_dica=='0':
                 break
             else:
                 print('Digite uma dica válida')
@@ -200,9 +208,6 @@ while True:
             print(f'- Cores da bandeira: {cores_ditas}')
 
 
-
-
-
     #Final do jogo
     if palpite == pais_rand:
         print('Acertou, danadinho!')
@@ -214,5 +219,5 @@ while True:
             print(f'Você é péssimo em Geografia!!! O país era: {pais_rand}')
             break
     elif tentaviva_inicial<=0:
-        print(f'Meu amigo... tu só pode ter passado no conselho! GAME OVER!!! O país era: {pais_rand}')
+        print(f'Meu amigo... tu só pode ter passado no conselho! \033[31mGAME OVER!!!\033[m O país era: \033[32m{pais_rand}\033[m')
         break 
