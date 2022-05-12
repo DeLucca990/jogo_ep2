@@ -113,7 +113,7 @@ while True:
             escolhe_dica=str(input(f'Escolha sua opção [{numero_das_dicas_str}]:'))
             if escolhe_dica=='1':
                 if tentaviva_inicial<4:
-                    print(f'Tá com alzheimer?? Você só tem {tentaviva_inicial} tentativas, maluco!')
+                    print(f'Tá com alzheimer?? Você só tem \033[31m{tentaviva_inicial}\033[m tentativas, maluco!')
                     break
                 else:
                     cor_sorteada = random.choice(cores_bandeira)
@@ -121,11 +121,16 @@ while True:
                     cores_bandeira.remove(cor_sorteada)
                     dic_dicas_opcoes['cores'] = cores_ditas
                 tentaviva_inicial-=4
-                print(f'Agora você tem {tentaviva_inicial} tentativa(s)')
+                if tentaviva_inicial>10:
+                    print(f'Você tem \033[36m{tentaviva_inicial}\033[m tentativa(s)')
+                if 5<tentaviva_inicial<=10:
+                    print(f'Você tem \033[33m{tentaviva_inicial}\033[m tentativa(s)')
+                if tentaviva_inicial<=5:
+                    print(f'Você tem \033[31m{tentaviva_inicial}\033[m tentativa(s)')
                 break
             if escolhe_dica=='2':
                 if tentaviva_inicial<3:
-                    print(f'Tá com alzheimer?? Você só tem {tentaviva_inicial} tentativas, maluco!')
+                    print(f'Tá com alzheimer?? Você só tem \033[31m{tentaviva_inicial}\033[m tentativas, maluco!')
                     break
                 else:
                     for continente in DADOS:
@@ -135,14 +140,19 @@ while True:
                                 restritos += letras
                                 dic_dicas_opcoes['letras'] = letras 
                 tentaviva_inicial-=3
-                print(f'Agora você tem {tentaviva_inicial} tentativa(s)')
+                if tentaviva_inicial>10:
+                    print(f'Você tem \033[36m{tentaviva_inicial}\033[m tentativa(s)')
+                if 5<tentaviva_inicial<=10:
+                    print(f'Você tem \033[33m{tentaviva_inicial}\033[m tentativa(s)')
+                if tentaviva_inicial<=5:
+                    print(f'Você tem \033[31m{tentaviva_inicial}\033[m tentativa(s)')
                 break
             if escolhe_dica=='3':
                 numero_das_dicas.remove('|3')
                 numero_das_dicas_str=''.join(numero_das_dicas)
                 if tentaviva_inicial<6:
                     del dic_dicas['dica3']
-                    print(f'Tá com alzheimer?? Você só tem {tentaviva_inicial} tentativas, maluco!')
+                    print(f'Tá com alzheimer?? Você só tem \033[31m{tentaviva_inicial}\033[m tentativas, maluco!')
                     break
                 else:
                     for continente in DADOS:
@@ -152,14 +162,19 @@ while True:
                                 dic_dicas_opcoes['area']=area_final
                 del dic_dicas['dica3']
                 tentaviva_inicial-=6
-                print(f'Agora você tem {tentaviva_inicial} tentativa(s)')
+                if tentaviva_inicial>10:
+                    print(f'Você tem \033[36m{tentaviva_inicial}\033[m tentativa(s)')
+                if 5<tentaviva_inicial<=10:
+                    print(f'Você tem \033[33m{tentaviva_inicial}\033[m tentativa(s)')
+                if tentaviva_inicial<=5:
+                    print(f'Você tem \033[31m{tentaviva_inicial}\033[m tentativa(s)')
                 break
             if escolhe_dica=='4':
                 numero_das_dicas.remove('|4')
                 numero_das_dicas_str=''.join(numero_das_dicas)
                 if tentaviva_inicial<5:
                     del dic_dicas['dica4']
-                    print(f'Tá com alzheimer?? Você só tem {tentaviva_inicial} tentativas, maluco!')
+                    print(f'Tá com alzheimer?? Você só tem \033[31m{tentaviva_inicial}\033[m tentativas, maluco!')
                     break
                 else:
                     for continente in DADOS:
@@ -169,14 +184,19 @@ while True:
                                 dic_dicas_opcoes['população'] = pop
                 del dic_dicas['dica4']
                 tentaviva_inicial-=5
-                print(f'Agora você tem {tentaviva_inicial} tentativa(s)')
+                if tentaviva_inicial>10:
+                    print(f'Você tem \033[36m{tentaviva_inicial}\033[m tentativa(s)')
+                if 5<tentaviva_inicial<=10:
+                    print(f'Você tem \033[33m{tentaviva_inicial}\033[m tentativa(s)')
+                if tentaviva_inicial<=5:
+                    print(f'Você tem \033[31m{tentaviva_inicial}\033[m tentativa(s)')
                 break
             if escolhe_dica=='5':
                 numero_das_dicas.remove('|5')
                 numero_das_dicas_str=''.join(numero_das_dicas)
                 if tentaviva_inicial<7:
                     del dic_dicas['dica5']
-                    print(f'Tá com alzheimer?? Você só tem {tentaviva_inicial} tentativas, maluco!')
+                    print(f'Tá com alzheimer?? Você só tem \033[31m{tentaviva_inicial}\033[m tentativas, maluco!')
                     break
                 else:
                     for continente in DADOS:
@@ -186,7 +206,12 @@ while True:
                                 dic_dicas_opcoes['continente'] = cont
                 del dic_dicas['dica5']
                 tentaviva_inicial-=7
-                print(f'Agora você tem {tentaviva_inicial} tentativa(s)')
+                if tentaviva_inicial>10:
+                    print(f'Você tem \033[36m{tentaviva_inicial}\033[m tentativa(s)')
+                if 5<tentaviva_inicial<=10:
+                    print(f'Você tem \033[33m{tentaviva_inicial}\033[m tentativa(s)')
+                if tentaviva_inicial<=5:
+                    print(f'Você tem \033[31m{tentaviva_inicial}\033[m tentativa(s)')
                 break
             if escolhe_dica=='0':
                 break
