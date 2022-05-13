@@ -71,7 +71,7 @@ while repete == 's':
 
     #Selecionando um palpite
 
-        palpite=str(input('Qual seu palpite:')).lower().strip()
+        palpite=str(input('Qual seu palpite?')).lower().strip()
         print('')
     #Palpite inválido
 
