@@ -25,7 +25,7 @@ while repete == 's':
     dic_dicas={' dica1':'1. Cor da Bandeira  - custa 4 tentativas',
                 'dica2':'2. Letra da capital - custa 3 tentativas',
                 'dica3':'3. Área             - custa 6 tentativas',
-                'dica4':'4. Populção         - custa 5 tentativas',
+                'dica4':'4. População         - custa 5 tentativas',
                 'dica5':'5. Continente       - custa 7 tentativas',
                 'dica0':'0. Sem dica         - custa 0 tentativas'}
 
