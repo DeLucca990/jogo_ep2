@@ -76,7 +76,6 @@ while repete == 's':
     #Palpite inválido
 
         while palpite not in lista_paises and palpite!='dica' and palpite!='dicas' and palpite!='inventario' and palpite!='desisto':
-            print('')
             print('País INVÁLIDO')
             print('')
             palpite=str(input('Qual seu palpite:')).lower().strip()
